@@ -4,16 +4,17 @@ class AddContact extends React.Component {
   state = {
     name: "",
     email: "",
+    phonenumber:"",
   };
 
   add = (e) => {
     e.preventDefault();
-    if (this.state.name === "" || this.state.email === "") {
-      alert("ALl the fields are mandatory!");
+    if (this.state.name === "" || this.state.email === "" || this.state.phonenumber==="") {
+      alert("All the fields are mandatory!");
       return;
     }
     this.props.addContactHandler(this.state);
-    this.setState({ name: "", email: "" });
+    this.setState({ name: "", email: "" ,phonenumber:""}); //used to clear data entered after saving in local storage
   };
   render() {
     return (
@@ -38,6 +39,16 @@ class AddContact extends React.Component {
               placeholder="Email"
               value={this.state.email}
               onChange={(e) => this.setState({ email: e.target.value })}
+            />
+          </div>
+          <div className="field">
+            <label>Phone Number</label>
+            <input
+              type="number"
+              name="phone number"
+              placeholder="Phone number"
+              value={this.state.phonenumber}
+              onChange={(e) => this.setState({ phonenumber: e.target.value })}
             />
           </div>
           <button className="ui button blue">Add</button>
